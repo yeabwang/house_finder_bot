@@ -30,6 +30,6 @@ python main.py```
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.11+
 - Chrome browser
 - Internet connection
