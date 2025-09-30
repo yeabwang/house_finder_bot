@@ -2,7 +2,7 @@ from httpx import Client, Timeout, HTTPError
 from httpx_retry import RetryPolicy, RetryTransport
 from models import HouseScraper
 
-class ScraperService:
+class HouseScraperService:
 
     def __init__(self, house_scraper: HouseScraper) -> None:
         self.time_out = Timeout(connect=30,pool=30,read=30,write=30)
