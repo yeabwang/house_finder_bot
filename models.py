@@ -21,3 +21,10 @@ class HouseParser:
     anchor_tag: str = "StyledPropertyCardDataArea-anchor"
     address_tag: str = "property-card-addr"
     price_tag: str = "PropertyCardWrapper__StyledPriceLine"
+
+
+@dataclass
+class ParsedResults:
+    property_address: str
+    property_price: str
+    link_to_property: str
