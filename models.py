@@ -26,5 +26,14 @@ class HouseParser:
 @dataclass
 class ParsedResults:
     property_address: str
-    property_price: str
+    property_price: float
     link_to_property: str
+
+
+@dataclass
+class DataFiller:
+    default_timeout: int = 30
+    form_link: str = os.getenv("FORM_LINK", "")
+    card_selector: str = "input.whsOnd.zHQkBf"
+    button_selector: str = "div[role='button'][aria-label='Submit']"
+    another_response_selector: str = "div.c2gzEf a"

@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
 from models import HouseParser, ParsedResults
+from typing import List
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class HouseParserService:
@@ -10,10 +14,15 @@ class HouseParserService:
         self.link_to_property = ""
         self.all_houses = []
 
-    def parse_data(self, scraped_data, house_parser: HouseParser):
+    def parse_data(
+        self, scraped_data, house_parser: HouseParser
+    ) -> List[ParsedResults]:
+
+        logger.info("Starting HTML parsing")
         self.scraped_data = scraped_data
         soup = BeautifulSoup(self.scraped_data, "lxml")
         property_cards = soup.find_all("div", class_=house_parser.card_tag)
+        logger.info(f"Found {len(property_cards)} property cards")
 
         for property in property_cards:
             anchor_tag = property.find("a", class_=house_parser.anchor_tag)
@@ -47,3 +56,6 @@ class HouseParserService:
             )
 
             self.all_houses.append(full_house_detail)
+
+        logger.info(f"Parsed {len(self.all_houses)} properties successfully")
+        return self.all_houses
